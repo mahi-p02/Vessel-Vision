@@ -1,4 +1,13 @@
-body { background-color: #000000; color: #ffffff; min-height: max(884px, 100dvh); }
+/* UPDATED LINE 1: */
+body { 
+  background-color: #0b010f; 
+  background-image: 
+    radial-gradient(circle at 80% 10%, rgba(147, 0, 235, 0.65) 0%, rgba(147, 0, 235, 0) 65%),
+    linear-gradient(135deg, #1c0035 0%, #3a0066 45%, #0f0021 85%, #05000f 100%);
+  background-attachment: fixed;
+  color: #ffffff; 
+  min-height: max(884px, 100dvh); 
+}
       .glass { background: rgba(255,0,255,0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255,0,255,0.1); }
       .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
 
@@ -136,3 +145,77 @@ body { background-color: #000000; color: #ffffff; min-height: max(884px, 100dvh)
             animation: borderGlow 4s ease-in-out infinite;
           }
           .hiw-card:hover { border-color:rgba(255,0,255,.55) !important; transform:translateY(-5px); }
+
+/* Base state for all elements we want to watch */
+.observe-me {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: all 0.8s cubic-bezier(0.17, 0.55, 0.55, 1); /* Smooth easing */
+}
+
+/* Specific starting positions before they become visible */
+.animate-fade-up {
+  transform: translateY(50px);
+}
+
+.animate-slide-left {
+  transform: translateX(-50px);
+}
+
+.animate-slide-right {
+  transform: translateX(50px);
+}
+
+.animate-scale-up {
+  transform: scale(0.9);
+}
+
+/* The active state triggered by our JavaScript */
+.observe-me.show {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* Staggered delays so groups of items don't appear all at once */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+
+/* --- AI Graphic Custom Animations --- */
+
+/* Floating UI Nodes */
+.animate-float-slow { animation: float-node 6s ease-in-out infinite; }
+.animate-float-medium { animation: float-node 4s ease-in-out infinite 1s; }
+.animate-float-fast { animation: float-node 3s ease-in-out infinite 0.5s; }
+
+@keyframes float-node {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Audio/Processing Bars (Node 3) */
+.animate-bar-1 { animation: pulse-bar 1s ease-in-out infinite; transform-origin: bottom; }
+.animate-bar-2 { animation: pulse-bar 1.2s ease-in-out infinite 0.2s; transform-origin: bottom; }
+.animate-bar-3 { animation: pulse-bar 0.8s ease-in-out infinite 0.4s; transform-origin: bottom; }
+.animate-bar-4 { animation: pulse-bar 1.5s ease-in-out infinite 0.1s; transform-origin: bottom; }
+
+@keyframes pulse-bar {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+/* Dynamic Changing Text (Node 4) */
+.dynamic-text-slider {
+  animation: text-slide 8s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+/* Moves the text up by 16px (1rem) for each word, pausing in between */
+@keyframes text-slide {
+  0%, 25% { transform: translateY(0); }
+  30%, 55% { transform: translateY(-16px); }
+  60%, 85% { transform: translateY(-32px); }
+  90%, 100% { transform: translateY(-48px); } 
+}
