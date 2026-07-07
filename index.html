@@ -74,8 +74,6 @@
           onclick="showPage('blog')">Blog</a>
         <a id="nav-about" class="text-label-md font-label-md nav-inactive transition-colors cursor-pointer"
           onclick="showPage('about')">About</a>
-        <a id="nav-about" class="text-label-md font-label-md nav-inactive transition-colors cursor-pointer"
-          onclick="showPage('contact')">Contact</a>
       </nav>
       <button
         class="inline-flex items-center gap-2 px-6 py-2 rounded-lg font-semibold text-white bg-fuchsia-800 hover:bg-fuchsia-500 transition-all duration-300 hover:scale-105 shadow-lg shadow-fuchsia-600/30"
@@ -2499,14 +2497,14 @@
             </li>
             <li><a class="hover:text-primary transition-colors" href="#">Research Papers</a></li>
             <li><a class="hover:text-primary transition-colors" href="#">Clinician Portal</a></li>
-            <li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+            <li><a class="hover:text-primary transition-colors" onclick="showPage('about')">Contact</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div
       class="max-w-5xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-label-md text-on-surface-variant/60">
-      <p>© 2024 Vessel Vision Private Limited. All rights reserved.</p>
+      <p>© <span id="year"> #add dynamic year#</span> Vessel Vision Private Limited. All rights reserved.</p>
       <div class="flex gap-8">
         <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
         <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>

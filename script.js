@@ -160,3 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 });
+
+
+
+
+document.getElementById("year").textContent = new Date().getFullYear();
