@@ -165,3 +165,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+
+
+
+
+
+
+  const TOTAL = 7000; // full scan cycle, ms
+
+  const badge   = document.getElementById('confBadge');
+  const boxA    = document.getElementById('boxA');
+  const boxB    = document.getElementById('boxB');
+  const boxFinal= document.getElementById('boxFinal');
+  const readout = document.getElementById('readout');
+
+  function countUp(el, from, to, duration){
+    const start = performance.now();
+    function step(now){
+      const p = Math.min((now - start) / duration, 1);
+      const val = (from + (to - from) * p).toFixed(1);
+      el.textContent = val + '%';
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function cycle(){
+    badge.textContent = 'SCANNING';
+    boxA.classList.remove('show');
+    boxB.classList.remove('show');
+    boxFinal.classList.remove('show');
+    readout.classList.remove('show');
+
+    setTimeout(() => boxA.classList.add('show'), 900);
+    setTimeout(() => boxA.classList.remove('show'), 1500);
+
+    setTimeout(() => boxB.classList.add('show'), 1650);
+    setTimeout(() => boxB.classList.remove('show'), 2200);
+
+    setTimeout(() => {
+      boxFinal.classList.add('show');
+      readout.classList.add('show');
+      countUp(badge, 0, 96.2, 900);
+    }, 2400);
+
+    setTimeout(() => {
+      boxFinal.classList.remove('show');
+      readout.classList.remove('show');
+    }, TOTAL - 500);
+  }
+
+  cycle();
+  setInterval(cycle, TOTAL);
